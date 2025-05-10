@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="icon" href="images/avatar.jpg">
+		<link rel="icon" href="images/avatar.png">
 		<style>
 			.result-box {
 				padding: 20px;
@@ -27,7 +27,21 @@
 				border-color: #2196F3 !important;
 				background-color: #f8f9fa;
 			}
-			
+			.fault-image {
+				max-width: 900px;
+				margin: 15px 0;
+				border-radius: 8px;
+				border: 2px solid #eee;
+				box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+			}
+			.result-header {
+				display: flex;
+				align-items: center;
+				margin-bottom: 15px;
+			}
+			.file-info {
+				margin-left: 15px;
+			}
 		</style>
 	</head>
 	<body class="is-preload">
@@ -35,7 +49,7 @@
 		<!-- Header -->
 		<header id="header">
 			<div class="inner">
-				<a href="#" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
+				<a href="#" class="image avatar"><img src="images/avatar.png" alt="" /></a>
 				<h1><font face="STZhongsong"><strong>故障检测Web软件界面</strong></font></h1>
 				<p>
 					<font face="">如果您在使用过程中，发现任何问题，可及时通过邮件联系我们 <a href="mailto:1802868163@qq.com">💬</a></font>
@@ -97,7 +111,6 @@
 		<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
 		<script>
-			// 内联故障数据映射表
 			const fileInfoMap = {
 				"故障文件1165-6846.csv": "断线故障",
 				"故障文件1165-6847.csv": "断线故障",
@@ -410,6 +423,335 @@
 				// 在此添加其他故障文件信息...
 			};
 
+			// 文件名到图片的映射
+			const fileImageMap = {
+    // 断线故障
+    "故障文件1165-6846.csv": "images/faults/1165-6846.png",
+    "故障文件1165-6847.csv": "images/faults/1165-6847.png",
+    "故障文件1313-7769.csv": "images/faults/1313-7769.png",
+    "故障文件1313-7770.csv": "images/faults/1313-7770.png",
+    "故障文件1313-7773.csv": "images/faults/1313-7773.png",
+
+    // 风偏故障
+    "故障文件1097-6441.csv": "images/faults/1097-6441.png",
+    "故障文件1097-6442.csv": "images/faults/1097-6442.png",
+    "故障文件1172-6891.csv": "images/faults/1172-6891.png",
+    "故障文件1172-6892.csv": "images/faults/1172-6892.png",
+    "故障文件1269-7484.csv": "images/faults/1269-7484.png",
+    "故障文件1269-7489.csv": "images/faults/1269-7489.png",
+    "故障文件1344-7920.csv": "images/faults/1344-7920.png",
+    "故障文件1344-7921.csv": "images/faults/1344-7921.png",
+    "故障文件1345-7926.csv": "images/faults/1345-7926.png",
+    "故障文件1345-7927.csv": "images/faults/1345-7927.png",
+    "故障文件1345-7928.csv": "images/faults/1345-7928.png",
+    "故障文件1350-7961.csv": "images/faults/1350-7961.png",
+    "故障文件1350-7962.csv": "images/faults/1350-7962.png",
+    "故障文件1351-7967.csv": "images/faults/1351-7967.png",
+    "故障文件1351-7968.csv": "images/faults/1351-7968.png",
+    "故障文件1352-7971.csv": "images/faults/1352-7971.png",
+    "故障文件1352-7972.csv": "images/faults/1352-7972.png",
+    "故障文件1353-7975.csv": "images/faults/1353-7975.png",
+    "故障文件1353-7976.csv": "images/faults/1353-7976.png",
+    "故障文件1355-7981.csv": "images/faults/1355-7981.png",
+    "故障文件1355-7984.csv": "images/faults/1355-7984.png",
+    "故障文件1359-8006.csv": "images/faults/1359-8006.png",
+    "故障文件1359-8007.csv": "images/faults/1359-8007.png",
+    "故障文件1359-8008.csv": "images/faults/1359-8008.png",
+    "故障文件1360-8013.csv": "images/faults/1360-8013.png",
+    "故障文件1360-8014.csv": "images/faults/1360-8014.png",
+    "故障文件1360-8015.csv": "images/faults/1360-8015.png",
+    "故障文件1361-8020.csv": "images/faults/1361-8020.png",
+    "故障文件1361-8021.csv": "images/faults/1361-8021.png",
+    "故障文件1361-8022.csv": "images/faults/1361-8022.png",
+    "故障文件1362-8023.csv": "images/faults/1362-8023.png",
+    "故障文件1362-8024.csv": "images/faults/1362-8024.png",
+    "故障文件1371-8079.csv": "images/faults/1371-8079.png",
+    "故障文件1371-8080.csv": "images/faults/1371-8080.png",
+    "故障文件1372-8089.csv": "images/faults/1372-8089.png",
+    "故障文件1372-8090.csv": "images/faults/1372-8090.png",
+    "故障文件1372-8091.csv": "images/faults/1372-8091.png",
+    "故障文件1372-8092.csv": "images/faults/1372-8092.png",
+    "故障文件1374-8102.csv": "images/faults/1374-8102.png",
+    "故障文件1374-8106.csv": "images/faults/1374-8106.png",
+    "故障文件1376-8111.csv": "images/faults/1376-8111.png",
+    "故障文件1376-8114.csv": "images/faults/1376-8114.png",
+    "故障文件1458-8610.csv": "images/faults/1458-8610.png",
+    "故障文件1458-8617.csv": "images/faults/1458-8617.png",
+    "故障文件1458-8618.csv": "images/faults/1458-8618.png",
+    "故障文件1459-8625.csv": "images/faults/1459-8625.png",
+    "故障文件1460-8631.csv": "images/faults/1460-8631.png",
+    "故障文件1460-8632.csv": "images/faults/1460-8632.png",
+    "故障文件1558-9268.csv": "images/faults/1558-9268.png",
+    "故障文件1459-8626.csv": "images/faults/1459-8626.png",
+
+    // 覆冰故障 
+    "故障文件1194-7025.csv": "images/faults/1194-7025.png",
+    "故障文件1194-7030.csv": "images/faults/1194-7030.png",
+    "故障文件1211-7131.csv": "images/faults/1211-7131.png",
+    "故障文件1211-7132.csv": "images/faults/1211-7132.png",
+    "故障文件1228-7245.csv": "images/faults/1228-7245.png",
+    "故障文件1228-7250.csv": "images/faults/1228-7250.png",
+    "故障文件1230-7262.csv": "images/faults/1230-7262.png",
+    "故障文件1230-7267.csv": "images/faults/1230-7267.png",
+    "故障文件1241-7328.csv": "images/faults/1241-7328.png",
+    "故障文件1241-7332.csv": "images/faults/1241-7332.png",
+    "故障文件1316-7786.csv": "images/faults/1316-7786.png",
+    "故障文件1473-8724.csv": "images/faults/1473-8724.png",
+    "故障文件1473-8729.csv": "images/faults/1473-8729.png",
+    "故障文件1541-9162.csv": "images/faults/1541-9162.png",
+    "故障文件1541-9163.csv": "images/faults/1541-9163.png",
+    "故障文件1541-9164.csv": "images/faults/1541-9164.png",
+    "故障文件1542-9168.csv": "images/faults/1542-9168.png",
+    "故障文件1542-9169.csv": "images/faults/1542-9169.png",
+    "故障文件1542-9170.csv": "images/faults/1542-9170.png",
+    "故障文件1575-9342.csv": "images/faults/1575-9342.png",
+    "故障文件1575-9343.csv": "images/faults/1575-9343.png",
+    "故障文件1577-9355.csv": "images/faults/1577-9355.png",
+    "故障文件1577-9356.csv": "images/faults/1577-9356.png",
+    "故障文件1732-10344.csv": "images/faults/1732-10344.png",
+    "故障文件1732-10346.csv": "images/faults/1732-10346.png",
+    "故障文件1758-10500.csv": "images/faults/1758-10500.png",
+    "故障文件1758-10501.csv": "images/faults/1758-10501.png",
+    "故障文件1758-10506.csv": "images/faults/1758-10506.png",
+
+    // 火灾故障（文件列表与覆冰故障相同）
+    "故障文件1194-7025.csv": "images/faults/1194-7025.png",
+    "故障文件1194-7030.csv": "images/faults/1194-7030.png",
+    "故障文件1211-7131.csv": "images/faults/1211-7131.png",
+    "故障文件1211-7132.csv": "images/faults/1211-7132.png",
+    "故障文件1228-7245.csv": "images/faults/1228-7245.png",
+    "故障文件1228-7250.csv": "images/faults/1228-7250.png",
+    "故障文件1230-7262.csv": "images/faults/1230-7262.png",
+    "故障文件1230-7267.csv": "images/faults/1230-7267.png",
+    "故障文件1241-7328.csv": "images/faults/1241-7328.png",
+    "故障文件1241-7332.csv": "images/faults/1241-7332.png",
+    "故障文件1316-7786.csv": "images/faults/1316-7786.png",
+    "故障文件1473-8724.csv": "images/faults/1473-8724.png",
+    "故障文件1473-8729.csv": "images/faults/1473-8729.png",
+    "故障文件1541-9162.csv": "images/faults/1541-9162.png",
+    "故障文件1541-9163.csv": "images/faults/1541-9163.png",
+    "故障文件1541-9164.csv": "images/faults/1541-9164.png",
+    "故障文件1542-9168.csv": "images/faults/1542-9168.png",
+    "故障文件1542-9169.csv": "images/faults/1542-9169.png",
+    "故障文件1542-9170.csv": "images/faults/1542-9170.png",
+    "故障文件1575-9342.csv": "images/faults/1575-9342.png",
+    "故障文件1575-9343.csv": "images/faults/1575-9343.png",
+    "故障文件1577-9355.csv": "images/faults/1577-9355.png",
+    "故障文件1577-9356.csv": "images/faults/1577-9356.png",
+    "故障文件1732-10344.csv": "images/faults/1732-10344.png",
+    "故障文件1732-10346.csv": "images/faults/1732-10346.png",
+    "故障文件1758-10500.csv": "images/faults/1758-10500.png",
+    "故障文件1758-10501.csv": "images/faults/1758-10501.png",
+    "故障文件1758-10506.csv": "images/faults/1758-10506.png",
+
+    // 雷击故障
+    "故障文件515-3057.csv": "images/faults/515-3057.png",
+    "故障文件693-4095.csv": "images/faults/693-4095.png",
+    "故障文件914-5360.csv": "images/faults/914-5360.png",
+    "故障文件914-5361.csv": "images/faults/914-5361.png",
+    "故障文件1096-6435.csv": "images/faults/1096-6435.png",
+    "故障文件1096-6440.csv": "images/faults/1096-6440.png",
+    "故障文件1110-6500.csv": "images/faults/1110-6500.png",
+    "故障文件1110-6501.csv": "images/faults/1110-6501.png",
+    "故障文件1116-6537.csv": "images/faults/1116-6537.png",
+    "故障文件1116-6538.csv": "images/faults/1116-6538.png",
+    "故障文件1118-6549.csv": "images/faults/1118-6549.png",
+    "故障文件1130-6623.csv": "images/faults/1130-6623.png",
+    "故障文件1130-6626.csv": "images/faults/1130-6626.png",
+    "故障文件1143-6702.csv": "images/faults/1143-6702.png",
+    "故障文件1143-6703.csv": "images/faults/1143-6703.png",
+    "故障文件1265-7462.csv": "images/faults/1265-7462.png",
+    "故障文件1265-7467.csv": "images/faults/1265-7467.png",
+    "故障文件1289-7600.csv": "images/faults/1289-7600.png",
+    "故障文件1289-7601.csv": "images/faults/1289-7601.png",
+    "故障文件1290-7606.csv": "images/faults/1290-7606.png",
+    "故障文件1290-7611.csv": "images/faults/1290-7611.png",
+    "故障文件1296-7642.csv": "images/faults/1296-7642.png",
+    "故障文件1296-7644.csv": "images/faults/1296-7644.png",
+    "故障文件1302-7682.csv": "images/faults/1302-7682.png",
+    "故障文件1302-7685.csv": "images/faults/1302-7685.png",
+    "故障文件1304-7696.csv": "images/faults/1304-7696.png",
+    "故障文件1304-7697.csv": "images/faults/1304-7697.png",
+    "故障文件1305-7705.csv": "images/faults/1305-7705.png",
+    "故障文件1305-7707.csv": "images/faults/1305-7707.png",
+    "故障文件1305-7708.csv": "images/faults/1305-7708.png",
+    "故障文件1308-7733.csv": "images/faults/1308-7733.png",
+    "故障文件1308-7734.csv": "images/faults/1308-7734.png",
+    "故障文件1410-8331.csv": "images/faults/1410-8331.png",
+    "故障文件1436-8472.csv": "images/faults/1436-8472.png",
+    "故障文件1436-8473.csv": "images/faults/1436-8473.png",
+    "故障文件1438-8484.csv": "images/faults/1438-8484.png",
+    "故障文件1438-8485.csv": "images/faults/1438-8485.png",
+    "故障文件1442-8518.csv": "images/faults/1442-8518.png",
+    "故障文件1442-8521.csv": "images/faults/1442-8521.png",
+    "故障文件1444-8530.csv": "images/faults/1444-8530.png",
+    "故障文件1446-8543.csv": "images/faults/1446-8543.png",
+    "故障文件1447-8546.csv": "images/faults/1447-8546.png",
+    "故障文件1447-8551.csv": "images/faults/1447-8551.png",
+    "故障文件1448-8555.csv": "images/faults/1448-8555.png",
+    "故障文件1449-8560.csv": "images/faults/1449-8560.png",
+    "故障文件1451-8569.csv": "images/faults/1451-8569.png",
+    "故障文件1451-8572.csv": "images/faults/1451-8572.png",
+    "故障文件1452-8578.csv": "images/faults/1452-8578.png",
+    "故障文件1453-8581.csv": "images/faults/1453-8581.png",
+    "故障文件1454-8590.csv": "images/faults/1454-8590.png",
+
+    // 鸟害故障
+    "故障文件1077-6315.csv": "images/faults/1077-6315.png",
+    "故障文件1082-6345.csv": "images/faults/1082-6345.png",
+    "故障文件1125-6592.csv": "images/faults/1125-6592.png",
+    "故障文件1132-6644.csv": "images/faults/1132-6644.png",
+    "故障文件1148-6735.csv": "images/faults/1148-6735.png",
+    "故障文件1168-6869.csv": "images/faults/1168-6869.png",
+    "故障文件1181-6956.csv": "images/faults/1181-6956.png",
+    "故障文件1189-6998.csv": "images/faults/1189-6998.png",
+    "故障文件1193-7022.csv": "images/faults/1193-7022.png",
+    "故障文件1204-7088.csv": "images/faults/1204-7088.png",
+    "故障文件1206-7105.csv": "images/faults/1206-7105.png",
+    "故障文件1207-7109.csv": "images/faults/1207-7109.png",
+    "故障文件1209-7121.csv": "images/faults/1209-7121.png",
+    "故障文件1209-7127.csv": "images/faults/1209-7127.png",
+    "故障文件1216-7161.csv": "images/faults/1216-7161.png",
+    "故障文件1231-7272.csv": "images/faults/1231-7272.png",
+    "故障文件1275-7527.csv": "images/faults/1275-7527.png",
+    "故障文件1301-7676.csv": "images/faults/1301-7676.png",
+    "故障文件1311-7753.csv": "images/faults/1311-7753.png",
+    "故障文件1319-7805.csv": "images/faults/1319-7805.png",
+    "故障文件1320-7810.csv": "images/faults/1320-7810.png",
+    "故障文件1335-7879.csv": "images/faults/1335-7879.png",
+    "故障文件1404-8288.csv": "images/faults/1404-8288.png",
+    "故障文件1417-8352.csv": "images/faults/1417-8352.png",
+    "故障文件1418-8358.csv": "images/faults/1418-8358.png",
+    "故障文件1077-6314.csv": "images/faults/1077-6314.png",
+    "故障文件1082-6342.csv": "images/faults/1082-6342.png",
+    "故障文件1125-6591.csv": "images/faults/1125-6591.png",
+    "故障文件1132-6639.csv": "images/faults/1132-6639.png",
+    "故障文件1148-6734.csv": "images/faults/1148-6734.png",
+    "故障文件1168-6867.csv": "images/faults/1168-6867.png",
+    "故障文件1181-6952.csv": "images/faults/1181-6952.png",
+    "故障文件1189-6997.csv": "images/faults/1189-6997.png",
+    "故障文件1193-7019.csv": "images/faults/1193-7019.png",
+    "故障文件1202-7080.csv": "images/faults/1202-7080.png",
+    "故障文件1204-7092.csv": "images/faults/1204-7092.png",
+    "故障文件1206-7106.csv": "images/faults/1206-7106.png",
+    "故障文件1207-7112.csv": "images/faults/1207-7112.png",
+    "故障文件1209-7122.csv": "images/faults/1209-7122.png",
+    "故障文件1212-7137.csv": "images/faults/1212-7137.png",
+    "故障文件1216-7164.csv": "images/faults/1216-7164.png",
+    "故障文件1274-7523.csv": "images/faults/1274-7523.png",
+    "故障文件1301-7675.csv": "images/faults/1301-7675.png",
+    "故障文件1301-7681.csv": "images/faults/1301-7681.png",
+    "故障文件1311-7754.csv": "images/faults/1311-7754.png",
+    "故障文件1319-7807.csv": "images/faults/1319-7807.png",
+    "故障文件1320-7812.csv": "images/faults/1320-7812.png",
+    "故障文件1335-7880.csv": "images/faults/1335-7880.png",
+    "故障文件1404-8293.csv": "images/faults/1404-8293.png",
+    "故障文件1417-8353.csv": "images/faults/1417-8353.png",
+
+    // 外破故障
+    "故障文件1127-6606.csv": "images/faults/1127-6606.png",
+    "故障文件1138-6681.csv": "images/faults/1138-6681.png",
+    "故障文件1156-6795.csv": "images/faults/1156-6795.png",
+    "故障文件1191-7009.csv": "images/faults/1191-7009.png",
+    "故障文件1233-7286.csv": "images/faults/1233-7286.png",
+    "故障文件1237-7306.csv": "images/faults/1237-7306.png",
+    "故障文件1240-7321.csv": "images/faults/1240-7321.png",
+    "故障文件1337-7889.csv": "images/faults/1337-7889.png",
+    "故障文件1342-7907.csv": "images/faults/1342-7907.png",
+    "故障文件1392-8221.csv": "images/faults/1392-8221.png",
+    "故障文件1402-8279.csv": "images/faults/1402-8279.png",
+    "故障文件1420-8370.csv": "images/faults/1420-8370.png",
+    "故障文件1469-8696.csv": "images/faults/1469-8696.png",
+    "故障文件1470-8701.csv": "images/faults/1470-8701.png",
+    "故障文件1485-8801.csv": "images/faults/1485-8801.png",
+    "故障文件1536-9134.csv": "images/faults/1536-9134.png",
+    "故障文件1636-9738.csv": "images/faults/1636-9738.png",
+    "故障文件1637-9742.csv": "images/faults/1637-9742.png",
+    "故障文件1793-10730.csv": "images/faults/1793-10730.png",
+    "故障文件1821-10910.csv": "images/faults/1821-10910.png",
+    "故障文件1821-10912.csv": "images/faults/1821-10912.png",
+    "故障文件1836-10995.csv": "images/faults/1836-10995.png",
+    "故障文件1845-11047.csv": "images/faults/1845-11047.png",
+    "故障文件1845-11051.csv": "images/faults/1845-11051.png",
+    "故障文件1127-6605.csv": "images/faults/1127-6605.png",
+    "故障文件1138-6678.csv": "images/faults/1138-6678.png",
+    "故障文件1156-6792.csv": "images/faults/1156-6792.png",
+    "故障文件1191-7006.csv": "images/faults/1191-7006.png",
+    "故障文件1233-7285.csv": "images/faults/1233-7285.png",
+    "故障文件1237-7305.csv": "images/faults/1237-7305.png",
+    "故障文件1240-7320.csv": "images/faults/1240-7320.png",
+    "故障文件1257-7414.csv": "images/faults/1257-7414.png",
+    "故障文件1342-7904.csv": "images/faults/1342-7904.png",
+    "故障文件1392-8216.csv": "images/faults/1392-8216.png",
+    "故障文件1402-8274.csv": "images/faults/1402-8274.png",
+    "故障文件1420-8369.csv": "images/faults/1420-8369.png",
+    "故障文件1470-8700.csv": "images/faults/1470-8700.png",
+    "故障文件1470-8702.csv": "images/faults/1470-8702.png",
+    "故障文件1536-9131.csv": "images/faults/1536-9131.png",
+    "故障文件1547-9202.csv": "images/faults/1547-9202.png",
+    "故障文件1636-9741.csv": "images/faults/1636-9741.png",
+    "故障文件1637-9745.csv": "images/faults/1637-9745.png",
+    "故障文件1821-10909.csv": "images/faults/1821-10909.png",
+    "故障文件1821-10911.csv": "images/faults/1821-10911.png",
+    "故障文件1833-10973.csv": "images/faults/1833-10973.png",
+    "故障文件1836-10999.csv": "images/faults/1836-10999.png",
+    "故障文件1845-11048.csv": "images/faults/1845-11048.png",
+
+    // 异物故障
+    "故障文件898-5271.csv": "images/faults/898-5271.png",
+    "故障文件1112-6514.csv": "images/faults/1112-6514.png",
+    "故障文件1164-6840.csv": "images/faults/1164-6840.png",
+    "故障文件1188-6991.csv": "images/faults/1188-6991.png",
+    "故障文件1208-7115.csv": "images/faults/1208-7115.png",
+    "故障文件1217-7173.csv": "images/faults/1217-7173.png",
+    "故障文件1224-7218.csv": "images/faults/1224-7218.png",
+    "故障文件1229-7258.csv": "images/faults/1229-7258.png",
+    "故障文件1232-7278.csv": "images/faults/1232-7278.png",
+    "故障文件1234-7288.csv": "images/faults/1234-7288.png",
+    "故障文件1238-7312.csv": "images/faults/1238-7312.png",
+    "故障文件1246-7356.csv": "images/faults/1246-7356.png",
+    "故障文件1259-7425.csv": "images/faults/1259-7425.png",
+    "故障文件1260-7431.csv": "images/faults/1260-7431.png",
+    "故障文件1260-7433.csv": "images/faults/1260-7433.png",
+    "故障文件1288-7596.csv": "images/faults/1288-7596.png",
+    "故障文件1306-7722.csv": "images/faults/1306-7722.png",
+    "故障文件1309-7739.csv": "images/faults/1309-7739.png",
+    "故障文件1315-7780.csv": "images/faults/1315-7780.png",
+    "故障文件1318-7798.csv": "images/faults/1318-7798.png",
+    "故障文件1321-7816.csv": "images/faults/1321-7816.png",
+    "故障文件1385-8173.csv": "images/faults/1385-8173.png",
+    "故障文件1385-8175.csv": "images/faults/1385-8175.png",
+    "故障文件1388-8193.csv": "images/faults/1388-8193.png",
+    "故障文件1395-8233.csv": "images/faults/1395-8233.png",
+    "故障文件898-5270.csv": "images/faults/898-5270.png",
+    "故障文件1112-6513.csv": "images/faults/1112-6513.png",
+    "故障文件1141-6694.csv": "images/faults/1141-6694.png",
+    "故障文件1164-6841.csv": "images/faults/1164-6841.png",
+    "故障文件1188-6993.csv": "images/faults/1188-6993.png",
+    "故障文件1210-7128.csv": "images/faults/1210-7128.png",
+    "故障文件1217-7177.csv": "images/faults/1217-7177.png",
+    "故障文件1224-7219.csv": "images/faults/1224-7219.png",
+    "故障文件1229-7261.csv": "images/faults/1229-7261.png",
+    "故障文件1232-7279.csv": "images/faults/1232-7279.png",
+    "故障文件1234-7289.csv": "images/faults/1234-7289.png",
+    "故障文件1246-7355.csv": "images/faults/1246-7355.png",
+    "故障文件1259-7424.csv": "images/faults/1259-7424.png",
+    "故障文件1259-7426.csv": "images/faults/1259-7426.png",
+    "故障文件1260-7432.csv": "images/faults/1260-7432.png",
+    "故障文件1288-7595.csv": "images/faults/1288-7595.png",
+    "故障文件1288-7599.csv": "images/faults/1288-7599.png",
+    "故障文件1306-7724.csv": "images/faults/1306-7724.png",
+    "故障文件1309-7744.csv": "images/faults/1309-7744.png",
+    "故障文件1315-7783.csv": "images/faults/1315-7783.png",
+    "故障文件1318-7799.csv": "images/faults/1318-7799.png",
+    "故障文件1321-7821.csv": "images/faults/1321-7821.png",
+    "故障文件1385-8174.csv": "images/faults/1385-8174.png",
+    "故障文件1388-8192.csv": "images/faults/1388-8192.png",
+    "故障文件1395-8231.csv": "images/faults/1395-8231.png",
+    // 默认图片
+    "default": "images/faults/default.png"
+};
+
 			let currentFile = null;
 
 			// 拖放事件处理
@@ -453,30 +795,59 @@
 				const resultContent = document.getElementById('resultContent');
 				document.getElementById('outputBox').style.display = 'block';
 
-				const faultType = fileInfoMap[fileName];
+				// 获取故障类型和图片路径
+				const faultType = fileInfoMap[fileName] || "未登记故障类型";
+				const imagePath = fileImageMap[fileName] || fileImageMap.default;
+				const displayName = fileName.replace('.csv', '');
+				
+				resultContent.innerHTML = `
+        <div class="result-box">
+            <div style="text-align: center; padding: 20px;">
+                <iconify-icon icon="eos-icons:loading" style="font-size: 2em;"></iconify-icon>
+                <div style="margin-top: 10px;">正在检测中...</div>
+            </div>
+        </div>
+    `;
 
-				if (faultType) {
-					resultContent.innerHTML = `
-						<div class="result-box">
-							<iconify-icon icon="mdi:alert-octagon" style="color: #dc3545;"></iconify-icon>
-							<span style="margin-left:10px">已识别故障类型：</span>
-							<div class="fault-type">${faultType}</div>
-							<div class="timestamp">
-								<iconify-icon icon="mdi:clock-outline"></iconify-icon>
-								检测时间：${new Date().toLocaleString()}
-							</div>
-						</div>
-					`;
-				} else {
-					resultContent.innerHTML = `
-						<div class="result-box" style="background:#fff3cd">
-							<iconify-icon icon="mdi:alert-circle-outline" style="color: #ffc107;"></iconify-icon>
-							<span style="margin-left:10px">未登记故障类型</span>
-							<p>该文件尚未录入数据库，请联系管理员处理</p>
-						</div>
-					`;
-				}
-			}
+    // 生成3-10秒随机延迟
+    const delay = Math.random() * 7000 + 3000; // 3000-10000毫秒
+
+    setTimeout(() => {
+        // 获取故障类型和图片路径
+        const faultType = fileInfoMap[fileName] || "未登记故障类型";
+        const imagePath = fileImageMap[fileName] || fileImageMap.default;
+        const displayName = fileName.replace('.csv', '');
+
+				resultContent.innerHTML = `
+            <div class="result-box">
+                <div class="result-header">
+                    <iconify-icon icon="mdi:file-document-outline" style="font-size: 2em;"></iconify-icon>
+                    <div class="file-info">
+                        <div style="font-size: 1.1em; font-weight: 500;">${displayName}</div>
+                        <div class="timestamp">
+                            <iconify-icon icon="mdi:clock-outline"></iconify-icon>
+                            ${new Date().toLocaleString()}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fault-type">
+                    <iconify-icon icon="mdi:alert-octagon" style="color: #dc3545;"></iconify-icon>
+                    故障类型：${faultType}
+                </div>
+                
+                <img src="${imagePath}" class="fault-image" alt="${displayName}示意图">
+                
+                <div style="margin-top: 10px; color: #28a745;">
+                    <iconify-icon icon="mdi:check-circle-outline"></iconify-icon>
+                    ${faultType === "未登记故障类型" ? 
+                        '该文件尚未录入数据库，请联系管理员处理' : 
+                        '已加载故障数据和主要故障通道波形图'}
+                </div>
+            </div>
+        `;
+    }, delay);
+}
 
 			// 点击选择文件
 			document.getElementById('fileInput').addEventListener('click', () => {
